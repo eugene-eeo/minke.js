@@ -1,4 +1,4 @@
-var Minke = function(el) {
+Minke = function(el) {
   this.el = el;
   this.bound = false;
   this.handlers = {'*': function() {}};

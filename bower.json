@@ -1,0 +1,22 @@
+{
+  "name": "minke.js",
+  "main": "minke.js",
+  "homepage": "https://github.com/eugene-eeo/minke.js",
+  "authors": [
+    "Eeo Jun <packwolf58@gmail.com>"
+  ],
+  "description": "keyboard shortcut bindings for humans",
+  "moduleType": [],
+  "keywords": [
+    "keyboard",
+    "browser"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
