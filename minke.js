@@ -30,16 +30,56 @@ var Minke = function(el) {
 
 Minke.prototype = {
   bind: function(ev) {
-    this.el.addEventListener(ev || 'keydown', this.listener);
+    this.el.addEventListener('keydown', this.listener);
   },
 
   unbind: function(ev) {
-    this.el.removeEventListener(ev || 'keydown', this.listener);
+    this.el.removeEventListener('keydown', this.listener);
   },
 
   on: function(codes, handler) {
-    var key = codes.concat([]).sort().join('+');
+    var key = Minke.keys(codes).join('+');
     this.handlers[key] = handler;
     return handler;
   },
 };
+
+(function() {
+  var number = /[0-9]/;
+  var fnkeys = /f1?[0-9]/;
+  var shorts = /ctrl|alt|meta|shift/;
+  var lookup = {
+    'backspace': 8,
+    'tab':       9,
+    'enter':     13,
+    'down':      40,
+    'up':        38,
+    'left':      37,
+    'right':     39,
+    ',':         188,
+    '.':         190,
+    '/':         191,
+    '\\':        220,
+    '[':         219,
+    ']':         221,
+    '=':         61,
+    '-':         173,
+  };
+
+  Minke.keys = function(seq) {
+    if (typeof seq === "string")
+      return Minke.keys(seq.split('+'));
+    var a = [];
+    for (var i=seq.length; i--;) {
+      var val = seq[i];
+      if (typeof val !== 'number') {
+        if (val.length === 1 && number.test(val)) val = 48 + (+val);
+        else if (fnkeys.test(val)) val = 111 + (+val.slice(1));
+        else if (shorts.test(val)) val = val;
+        else                       val = lookup[val] || +val;
+      }
+      a.push(val);
+    }
+    return a.sort();
+  };
+})();

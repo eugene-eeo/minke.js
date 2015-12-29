@@ -6,9 +6,7 @@ keyboard shortcuts (any number of modifier keys + one
 
 ```js
 var minke = new Minke(el);
-minke.on(['ctrl', 'shift', 188], function(ev) {
-  console.log(ev.target);
-  ev.preventDefault();
+minke.on('ctrl+shift+,', function(ev) {
 });
-// el now responds to Ctrl+Shift+,
+// el now responds to Ctrl + Shift + ,
 ```
