@@ -10,3 +10,8 @@ minke.on('ctrl+shift+,', function(ev) {
 });
 // el now responds to Ctrl + Shift + ,
 ```
+
+### Todo
+
+ - Allow users to add their own key-keycode bindings.
+ - Handle cross browser idiosyncrasies on meta key.

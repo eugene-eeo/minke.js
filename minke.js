@@ -4,21 +4,13 @@ Minke = function(el) {
   this.handlers = {'*': function() {}};
   this.listener = function(ev) {
     var keys = [];
-    if (ev.ctrlKey)  keys.push('ctrl');
-    if (ev.altKey)   keys.push('alt');
-    if (ev.shiftKey) keys.push('shift');
-    if (ev.metaKey)  keys.push('meta');
+    if (ev.shiftKey) keys.push(16);
+    if (ev.ctrlKey)  keys.push(17);
+    if (ev.altKey)   keys.push(18);
 
     var norm = ev.which || ev.keyCode;
-    switch (norm) {
-      case 16:
-      case 17:
-      case 18:
-      case 224:
-        break;
-      default:
-        keys.push(norm);
-    };
+    if (!~keys.indexOf(norm))
+      keys.push(norm);
 
     var hkey = keys.sort().join('+');
     var handler = this.handlers[hkey] || this.handlers['*'];
@@ -47,11 +39,13 @@ Minke.prototype = {
 (function() {
   var number = /[0-9]/;
   var fnkeys = /f1?[0-9]/;
-  var shorts = /ctrl|alt|meta|shift/;
   var lookup = {
     'backspace': 8,
     'tab':       9,
     'enter':     13,
+    'shift':     16,
+    'ctrl':      17,
+    'alt':       18,
     'down':      40,
     'up':        38,
     'left':      37,
@@ -75,7 +69,6 @@ Minke.prototype = {
       if (typeof val !== 'number') {
         if (val.length === 1 && number.test(val)) val = 48 + (+val);
         else if (fnkeys.test(val)) val = 111 + (+val.slice(1));
-        else if (shorts.test(val)) val = val;
         else                       val = lookup[val] || +val;
       }
       a.push(val);
