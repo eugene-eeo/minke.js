@@ -7,13 +7,13 @@
   <script>
 var minke = new Minke(document.getElementById('box'));
 var fn = minke.on('ctrl+shift+,', function(ev) {
-  console.log(ev.target);
-  ev.preventDefault();
-});
-
-minke.on('f1', function(ev) {
   console.log(ev);
 });
+
+minke.on('f1', fn);
+minke.on('1', fn);
+minke.on('backspace', fn);
+minke.on('down', fn);
   </script>
 </body>
 </html>
