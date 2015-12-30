@@ -25,7 +25,7 @@ Minke.prototype = {
   },
 
   on: function(codes, handler) {
-    var key = Minke.keys(codes).join('+');
+    var key = Minke.keys(codes).sort().join('+');
     this.handlers[key] = handler;
     return handler;
   },
@@ -68,7 +68,7 @@ Minke.prototype = {
       else if (val == 'meta')    val = val;
       else                       val = lookup[val] || +val;
       return val;
-    }).sort();
+    });
   };
 
   var isFF = navigator.userAgent.match('Firefox');
