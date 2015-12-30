@@ -1,0 +1,35 @@
+<!doctype>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Tests</title>
+  <link href="../bower_components/mocha/mocha.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="mocha"></div>
+
+  <script src="../bower_components/chai/chai.js"></script>
+  <script src="../bower_components/mocha/mocha.js"></script>
+  <script>mocha.setup('bdd')</script>
+
+  <script src="../minke.js"></script>
+  <script>
+  $ = document.createElement.bind(document);
+  $kbd = function(opts) {
+    return new KeyboardEvent('keydown', opts);
+  };
+  </script>
+
+  <script src="test.js"></script>
+  <script src="test_delegate.js"></script>
+  <script src="test_bind.js"></script>
+  <script src="test_once.js"></script>
+  <script>
+    if (window.mochaPhantomJS) {
+      mochaPhantomJS.run();
+    } else {
+      mocha.run();
+    }
+  </script>
+</body>
+</html>

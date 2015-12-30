@@ -1,7 +1,7 @@
 # minke.js
 
 A fast, fun little JS microlibrary that helps you handle
-keyboard shortcuts (any number of modifier keys and a 'normal'
+keyboard shortcuts (any number of modifier keys and a non-modifier
 key, e.g. Ctrl + B, Tab, Enter, etc.) without driving you insane.
 
 ```js
@@ -17,7 +17,7 @@ minke.unbind();
 ### adding custom key names
 
 The only special key is the meta key- rather than using
-the browser-specific keycodes, internally minke normalises
+the browser-specific keycodes, internally Minke normalises
 it to 'meta'.
 
 ```js
