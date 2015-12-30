@@ -1,121 +1,161 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Minke.js by eugene-eeo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Minke.js</h1>
-      <h2 class="project-tagline">keyboard shortcuts for humans</h2>
-      <a href="https://github.com/eugene-eeo/minke.js" class="btn">View on GitHub</a>
-      <a href="https://github.com/eugene-eeo/minke.js/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/eugene-eeo/minke.js/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+<html>
+<head>
+  <title>Minke.js</title>
+  <meta charset='utf8'/>
+  <meta name=viewport content="width=device-width, initial-scale=1"/>
+  <style>
+body {
+  width: 28em;
+  font-size: 18px;
+  font-family: Georgia, serif;
+  margin: 3em auto;
+  color: #000;
+}
+.header {
+  margin: 0 0 1.5em 0;
+  overflow: auto;
+}
+.header img {
+  float: left;
+  display: block;
+}
+.header .right {
+  float: left;
+  margin-left: 1em;
+  width: calc(100% - 1em - 150px);
+}
+h1 {
+  color: #4578A1;
+  margin: 0.2em 0;
+}
+.header a {
+  background-color: #4578A1;
+  display: inline-block;
+  text-decoration: none;
+  color: #FFF;
+  padding: 0.3em 1.2em;
+}
+.header a:hover {
+  background-color: #2C4A77;
+}
+input {
+  font: inherit;
+  border: 1px solid #000;
+  padding: 0.2em 0.3em;
+}
+.buttons {
+  overflow: auto;
+  display: block;
+  margin: 0; padding: 0;
+  list-style-type: none;
+  margin: 0.5em 0;
+}
+.buttons li {
+  display: inline-block;
+  border: 1px solid #EEE;
+  padding: 0.5em;
+  background-color: #EEE;
+  margin: 0 0.2em;
+  font-family: Consolas, monospace;
+  font-weight: bold;
+  font-size: 0.9em;
+  float: left;
+}
+.buttons span {
+  float: right;
+  display: inline-block;
+  font-family: Consolas, monospace;
+  margin: 0 0.4em;
+  font-size: 0.9em;
+  padding: calc(0.5em - 1px);
+  border: 1px solid #4578A1;
+  background-color: #4578A1;
+  color: #FFF;
+}
+.row {
+  padding: 1em 0;
+  overflow: auto;
+  clear: both;
+  width: 30em;
+  margin: auto;
+  background-color: #FFF;
+}
+.c-3-5  { width: 60%; float: left; }
+.c-2-5  { width: 40%; float: left; }
+@media only screen and (max-device-width: 480px) {
+  body {
+    width: inherit;
+    margin: 1.5em 1em;
+    text-align: center;
+  }
+  img {
+    float: none !important;
+    margin: auto;
+  }
+  a {
+    display: block !important;
+    width: 10em;
+    padding 0.5em 0 !important;
+    margin: 0.5em auto;
+    text-align: center;
+  }
+  .row   { display: none; }
+  .left  {
+    clear: both;
+  }
+  .right {
+    clear: both;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class='header'>
+  <img class='left' src='minke.png' width='150'/>
+  <div class='right'>
+    <h1>Minke.js</h1>
+    <p>
+      <b>Minke.js</b> is a tiny, fast, and fun library
+      for handling keyboard shortcuts. Fits into just
+      0.48kB, minified and gzipped.
+    </p>
+    <a href='https://github.com/eugene-eeo/minke.js'>Github</a>
+    <a href='https://github.com/eugene-eeo/minke.js/releases/latest'>Download</a>
+  </div>
+  </div>
 
-    <section class="main-content">
-      <h1>
-<a id="minkejs" class="anchor" href="#minkejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>minke.js</h1>
+  <div class='row'>
+  <div class='c-3-5'>
+    <p>
+      Go ahead, hit any of the key combinations shown
+      and watch as the counter next to them increases
+      in value. To see how it's done, just view the
+      source!
+    </p>
+  </div>
+  <div class='c-2-5'>
+    <ul class='buttons' data-keybind='alt k'><li>Alt</li><li>K</li><span>0</span></ul>
+    <ul class='buttons' data-keybind='ctrl alt 1'><li>Ctrl</li><li>Alt</li><li>1</li><span>0</span></ul>
+    <ul class='buttons' data-keybind='tab'><li>Tab</li><span>0</span></ul>
+  </div>
+  </div>
 
-<p><img src="media/minke.png" align="right"></p>
+  <script src='minke.min.js'></script>
+  <script>
+(function() {
+  var minke = new Minke(document);
+  var elems = document.querySelectorAll('.buttons');
 
-<p>A fast, fun little JS microlibrary that helps you handle
-keyboard shortcuts (zero or more modifier keys followed by a
-non-modifier key, e.g. Ctrl + B, Tab, Enter, etc.) without
-driving you insane.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> minke <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Minke</span>(el);
-<span class="pl-smi">minke</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>tab<span class="pl-pds">'</span></span>, fn);
-<span class="pl-smi">minke</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>ctrl alt ,<span class="pl-pds">'</span></span>, fn);        <span class="pl-c">// Ctrl+Alt+,</span>
-
-<span class="pl-smi">minke</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>ctrl b<span class="pl-pds">'</span></span>, toggleBold);    <span class="pl-c">// Ctrl+B</span>
-<span class="pl-smi">minke</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>meta b<span class="pl-pds">'</span></span>, toggleBold);    <span class="pl-c">// ⌘ +B</span>
-<span class="pl-smi">minke</span>.<span class="pl-en">unbind</span>();</pre></div>
-
-<p>Currently Minke does not support multiple handlers to be bound
-under the same shortcut. This is because I don't usually find
-myself binding multiple callbacks on a single shortcut.</p>
-
-<h3>
-<a id="default-key-names" class="anchor" href="#default-key-names" aria-hidden="true"><span class="octicon octicon-link"></span></a>Default key names</h3>
-
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="left">Description</th>
-<th align="center">KeyCode(s)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><code>[a-z]</code></td>
-<td align="left">Alphabets</td>
-<td align="center">65-90</td>
-</tr>
-<tr>
-<td align="center"><code>[0-9]</code></td>
-<td align="left">Numbers on the number row</td>
-<td align="center">48-57</td>
-</tr>
-<tr>
-<td align="center"><code>shift</code></td>
-<td align="left">Shift key</td>
-<td align="center">16</td>
-</tr>
-<tr>
-<td align="center"><code>ctrl</code></td>
-<td align="left">Control key (not ⌘ key on Mac)</td>
-<td align="center">17</td>
-</tr>
-<tr>
-<td align="center"><code>meta</code></td>
-<td align="left">Meta key (windows key, etc.)</td>
-<td align="center">normalised</td>
-</tr>
-<tr>
-<td align="center"><code>alt</code></td>
-<td align="left">Alt key</td>
-<td align="center">18</td>
-</tr>
-<tr>
-<td align="center"><code>up,down,left,right</code></td>
-<td align="left">Arrow keys</td>
-<td align="center">37-40</td>
-</tr>
-<tr>
-<td align="center"><code>f[1-12]</code></td>
-<td align="left">Function keys</td>
-<td align="center">112-123</td>
-</tr>
-</tbody>
-</table>
-
-<p>The only special key is the meta key- rather than using
-the browser-specific keycodes, internally Minke normalises
-it to 'meta'. You can add your custom key names:</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">Minke</span>.<span class="pl-smi">lookup</span>[<span class="pl-s"><span class="pl-pds">'</span>customKey<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> keyCode;
-<span class="pl-smi">Minke</span>.<span class="pl-smi">lookup</span>[<span class="pl-s"><span class="pl-pds">'</span>⌘<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>meta<span class="pl-pds">'</span></span>;
-<span class="pl-smi">minke</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>ctrl customKey<span class="pl-pds">'</span></span>, fn);
-<span class="pl-smi">minke</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>⌘ B<span class="pl-pds">'</span></span>, fn);</pre></div>
-
-<p>You can see an example of how it's done in the
-<a href="bindings/symbols.js">symbol bindings</a>.</p>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/eugene-eeo/minke.js">Minke.js</a> is maintained by <a href="https://github.com/eugene-eeo">eugene-eeo</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
-  </body>
+  for (var i=elems.length; i--;) {
+    var el = elems[i];
+    minke.on(el.getAttribute('data-keybind'), function(ev) {
+      this.textContent = (+this.textContent) + 1;
+      ev.preventDefault();
+    }.bind(el.lastChild));
+  }
+})();
+  </script>
+</body>
 </html>
