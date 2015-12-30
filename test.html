@@ -6,10 +6,14 @@
   <input id='box' type='text'></input>
   <script>
 var minke = new Minke(document.getElementById('box'));
-var fn = minke.on('ctrl+shift+,', function(ev) {
+var fn = minke.on('ctrl shift ,', function(ev) {
   console.log(ev);
 });
 
+minke.on('meta B', fn);
+minke.on('ctrl B', fn);
+minke.on('meta', fn);
+minke.on('=', fn);
 minke.on('f1', fn);
 minke.on('1', fn);
 minke.on('backspace', fn);

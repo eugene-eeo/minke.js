@@ -6,12 +6,9 @@ keyboard shortcuts (any number of modifier keys + one
 
 ```js
 var minke = new Minke(el);
-minke.on('ctrl+shift+,', function(ev) {
+minke.on('ctrl shift ,', function(ev) {
 });
-// el now responds to Ctrl + Shift + ,
+
+minke.on('ctrl B', toggleBold);
+minke.on('meta B', toggleBold);
 ```
-
-### Todo
-
- - Allow users to add their own key-keycode bindings.
- - Handle cross browser idiosyncrasies on meta key.

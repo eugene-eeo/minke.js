@@ -7,9 +7,10 @@ Minke = function(el) {
     if (ev.shiftKey) keys.push(16);
     if (ev.ctrlKey)  keys.push(17);
     if (ev.altKey)   keys.push(18);
+    if (ev.metaKey)  keys.push('meta');
 
     var norm = ev.which || ev.keyCode;
-    if (!~keys.indexOf(norm))
+    if (!~keys.indexOf(norm) && !~Minke.keys.metas.indexOf(norm))
       keys.push(norm);
 
     var hkey = keys.sort().join('+');
@@ -37,42 +38,67 @@ Minke.prototype = {
 };
 
 (function() {
-  var number = /[0-9]/;
-  var fnkeys = /f1?[0-9]/;
+  var alphas = /^[a-zA-Z]$/;
+  var number = /^[0-9]$/;
+  var fnkeys = /^f1?[0-9]$/;
   var lookup = {
     'backspace': 8,
     'tab':       9,
     'enter':     13,
+    'meta':      'meta',
     'shift':     16,
     'ctrl':      17,
     'alt':       18,
-    'down':      40,
-    'up':        38,
     'left':      37,
+    'up':        38,
     'right':     39,
+    'down':      40,
     ',':         188,
     '.':         190,
     '/':         191,
     '\\':        220,
     '[':         219,
     ']':         221,
-    '=':         61,
     '-':         173,
   };
 
   Minke.keys = function(seq) {
     if (typeof seq === "string")
-      return Minke.keys(seq.split('+'));
+      return Minke.keys(seq.split(' '));
     var a = [];
     for (var i=seq.length; i--;) {
       var val = seq[i];
       if (typeof val !== 'number') {
-        if (val.length === 1 && number.test(val)) val = 48 + (+val);
+        console.log(alphas.test(val));
+        if      (number.test(val)) val = 48 + (+val);
+        else if (alphas.test(val)) val = val.toUpperCase().charCodeAt(0);
         else if (fnkeys.test(val)) val = 111 + (+val.slice(1));
         else                       val = lookup[val] || +val;
       }
       a.push(val);
     }
+    console.log(a);
     return a.sort();
   };
+
+  var userAgent = navigator.userAgent;
+  var isMac = userAgent.match('Mac');
+  var isFF  = userAgent.match('Firefox');
+  var isWK  = userAgent.match(/Safari|Chrome/);
+  var isOP  = userAgent.match('Opera');
+
+  var lMeta = 93;
+  var rMeta = 93;
+  if (isMac) {
+    if (isFF)      { lMeta = rMeta = 224; }
+    else if (isWK) { lMeta = 91; rMeta = 93; }
+    else if (isOP) { lMeta = rMeta = 17; }
+  }
+
+  lookup[';'] = isFF ? 59  : 186;
+  lookup['='] = isFF ? 61  : 187;
+  lookup['-'] = isFF ? 173 : 189;
+
+  Minke.lookup = lookup;
+  Minke.keys.metas = [rMeta, lMeta];
 })();
