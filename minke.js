@@ -55,16 +55,15 @@ Minke.prototype = {
     'down':      40,
   };
 
-  for (var charCode=97; charCode <= 122; charCode++) {
-    var ch = String.fromCharCode(charCode);
-    lookup[ch] = charCode - 32;
-  }
+  // Alphabets
+  for (var i=97; i <= 122; i++)
+    lookup[String.fromCharCode(i)] = i - 32;
 
-  for (var i=0; i <= 9; i++) {
+  // Integers 0-9
+  for (var i=0; i <= 9; i++)
     lookup[i] = i + 48;
-  }
 
-  for (var i=1; i <= 12; i++) {
+  // Function keys
+  for (var i=1; i <= 12; i++)
     lookup['f'+i] = i+111;
-  }
 })();
