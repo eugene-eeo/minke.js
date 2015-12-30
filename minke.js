@@ -62,12 +62,12 @@ Minke.prototype = {
       if (typeof val === 'number') {
         return val
       }
-      if      (number.test(val)) val = 48 + (+val);
-      else if (alphas.test(val)) val = val.toUpperCase().charCodeAt(0);
-      else if (fnkeys.test(val)) val = 111 + (+val.slice(1));
-      else if (val == 'meta')    val = val;
-      else                       val = lookup[val] || +val;
-      return val;
+      return (
+        number.test(val) ? 48 + (+val) :
+        alphas.test(val) ? val.toUpperCase().charCodeAt(0) :
+        fnkeys.test(val) ? 111 + (+val.slice(1)) :
+        val == 'meta'    ? val : lookup[val] || +val
+      );
     });
   };
 
