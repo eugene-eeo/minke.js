@@ -9,7 +9,7 @@ key, e.g. Ctrl + B, Tab, Enter, etc.) without driving you insane.
 ```js
 var minke = new Minke(el);
 minke.on('tab',   fn);
-minke.on('enter', fn);
+minke.on('ctrl alt ,', fn);        // Ctrl+Alt+,
 
 minke.on('ctrl b', toggleBold);    // Ctrl+B
 minke.on('meta b', toggleBold);    // ⌘ +B
