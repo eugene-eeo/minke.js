@@ -21,11 +21,22 @@ Currently Minke does not support multiple handlers to be bound
 under the same shortcut. This is because I don't usually find
 myself binding multiple callbacks on a single shortcut.
 
-### adding custom key names
+### default key name bindings
+
+|         | Description                    | KeyCode(s) |
+|:-------:|:------------------------------ |-----------:|
+| `[a-z]` | Alphabets                      | 65-90      |
+| `[0-9]` | Numbers on the number row      | 48-57      |
+| `shift` | Shift key                      | 16         |
+| `ctrl`  | Control key (not ⌘ key on Mac) | 17         |
+| `meta`  | Meta key (windows key, etc.)   | normalised |
+| `alt`   | Alt key                        | 18         |
+| `up,down,left,right` | Arrow keys        | 37-40      |
+| `f[1-12]` | Function keys                | 112-123    |
 
 The only special key is the meta key- rather than using
 the browser-specific keycodes, internally Minke normalises
-it to 'meta'.
+it to 'meta'. You can add your custom key names:
 
 ```js
 Minke.lookup['customKey'] = keyCode;
