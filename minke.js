@@ -36,9 +36,9 @@ Minke.prototype = {
     if (typeof seq === "string")
       return keys(seq.split(' '));
     return seq.map(function(val) {
-      return (typeof val === 'number')
-        ? val
-        : lookup[val] || +val;
+      return (typeof val === 'string')
+        ? lookup[val] || +val
+        : val;
     });
   };
 
