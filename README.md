@@ -24,5 +24,5 @@ it to 'meta'.
 minke.keys.lookup['customKey'] = keyCode;
 minke.keys.lookup['⌘'] = 'meta';
 minke.on('ctrl customKey', fn);
-minke.on('⌘ + B', fn);
+minke.on('⌘ B', fn);
 ```
