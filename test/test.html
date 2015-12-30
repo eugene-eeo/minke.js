@@ -18,9 +18,11 @@
   $kbd = function(opts) {
     return new KeyboardEvent('keydown', opts);
   };
+  assert = chai.assert;
   </script>
 
-  <script src="test.js"></script>
+  <script src="test_core.js"></script>
+  <script src="test_bindings.js"></script>
   <script>
     if (window.mochaPhantomJS) {
       mochaPhantomJS.run();

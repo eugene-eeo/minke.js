@@ -1,60 +1,60 @@
-Minke = function(el) {
+Minke = function() {
   var handlers = {};
-  var listener = function(ev) {
+  var fn = function(ev) {
     var keys = [];
+
     if (ev.shiftKey) keys.push(16);
     if (ev.ctrlKey)  keys.push(17);
     if (ev.altKey)   keys.push(18);
     if (ev.metaKey)  keys.push('meta');
+
     keys.push(ev.which || ev.keyCode);
 
-    var handler = handlers[keys.sort().join('+')] || function(){};
-    handler(ev);
+    var key = keys.sort().join('-');
+    var handler = handlers[key];
+    handler && handler(ev);
   };
-  var api = {
-    bind:   function() { el.addEventListener('keydown', listener); },
-    unbind: function() { el.removeEventListener('keydown', listener); },
-    on: function(codes, handler) {
-      var key = Minke.keys(codes).sort().join('+');
-      handlers[key] = handler;
-      return api;
-    }
+
+  fn.on = function(combo, handler) {
+    var key = Minke.keys(combo).sort().join('-');
+    handlers[key] = handler;
+    return fn;
   };
-  api.bind();
-  return api;
+
+  return fn;
 };
 
-(function() {
-  Minke.keys = function keys(str) {
-    return str.split(' ').map(function(val) {
-      return (typeof val === 'string')
-        ? lookup[val] || +val
-        : val;
-    });
-  };
+Minke.keys = function(combo) {
+  return combo.split(' ').map(function(val) {
+    return Minke.lookup[val] || +val;
+  });
+};
 
-  var lookup = Minke.lookup = {
-    'backspace': 8,
-    'tab':       9,
-    'enter':     13,
-    'shift':     16,
-    'ctrl':      17,
-    'alt':       18,
-    'left':      37,
-    'up':        38,
-    'right':     39,
-    'down':      40,
+Minke.lookup = (function() {
+  var lookup = {
+    backspace: 8,
+    tab:       9,
+    enter:     13,
+    shift:     16,
+    ctrl:      17,
+    alt:       18,
+    left:      37,
+    up:        38,
+    right:     39,
+    down:      40,
   };
 
   // Alphabets
-  for (var i=97; i <= 122; i++)
+  for (var i = 97; i <= 122; i++)
     lookup[String.fromCharCode(i)] = i - 32;
 
   // Integers 0-9
-  for (var i=0; i <= 9; i++)
+  for (var i = 0; i <= 9; i++)
     lookup[i] = i + 48;
 
   // Function keys
-  for (var i=1; i <= 12; i++)
-    lookup['f'+i] = i+111;
+  for (var i = 1; i <= 12; i++)
+    lookup['f'+i] = i + 111;
+
+  return lookup;
 })();
