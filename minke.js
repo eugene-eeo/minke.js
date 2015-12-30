@@ -7,11 +7,9 @@ Minke = function(el) {
     if (ev.ctrlKey)  keys.push(17);
     if (ev.altKey)   keys.push(18);
     if (ev.metaKey)  keys.push('meta');
+    keys.push(ev.which || ev.keyCode);
 
-    var norm = ev.which || ev.keyCode;
-    keys.push(norm).sort();
-
-    var handler = this.handlers[keys.join('+')] || function(){};
+    var handler = this.handlers[keys.sort().join('+')] || function(){};
     handler(ev);
   }.bind(this);
   this.bind();
@@ -60,19 +58,17 @@ Minke.prototype = {
   Minke.keys = function(seq) {
     if (typeof seq === "string")
       return Minke.keys(seq.split(' '));
-    var a = [];
-    for (var i=seq.length; i--;) {
-      var val = seq[i];
-      if (typeof val !== 'number') {
-        if      (number.test(val)) val = 48 + (+val);
-        else if (alphas.test(val)) val = val.toUpperCase().charCodeAt(0);
-        else if (fnkeys.test(val)) val = 111 + (+val.slice(1));
-        else if (val == 'meta')    val = val;
-        else                       val = lookup[val] || +val;
+    return seq.map(function(val) {
+      if (typeof val === 'number') {
+        return val
       }
-      a.push(val);
-    }
-    return a.sort();
+      if      (number.test(val)) val = 48 + (+val);
+      else if (alphas.test(val)) val = val.toUpperCase().charCodeAt(0);
+      else if (fnkeys.test(val)) val = 111 + (+val.slice(1));
+      else if (val == 'meta')    val = val;
+      else                       val = lookup[val] || +val;
+      return val;
+    }).sort();
   };
 
   var isFF = navigator.userAgent.match('Firefox');
