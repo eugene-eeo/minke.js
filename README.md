@@ -3,12 +3,13 @@
 <img src='media/minke.png' align='right'/>
 
 A fast, fun little JS microlibrary that helps you handle
-keyboard shortcuts (any number of modifier keys and a non-modifier
-key, e.g. Ctrl + B, Tab, Enter, etc.) without driving you insane.
+keyboard shortcuts (zero or more modifier keys followed by a
+non-modifier key, e.g. Ctrl + B, Tab, Enter, etc.) without
+driving you insane.
 
 ```js
 var minke = new Minke(el);
-minke.on('tab',   fn);
+minke.on('tab', fn);
 minke.on('ctrl alt ,', fn);        // Ctrl+Alt+,
 
 minke.on('ctrl b', toggleBold);    // Ctrl+B
