@@ -1,7 +1,6 @@
 Minke = function(el) {
   this.el = el;
-  this.bound = false;
-  this.handlers = {'*': function() {}};
+  this.handlers = {};
   this.listener = function(ev) {
     var keys = [];
     if (ev.shiftKey) keys.push(16);
@@ -10,22 +9,20 @@ Minke = function(el) {
     if (ev.metaKey)  keys.push('meta');
 
     var norm = ev.which || ev.keyCode;
-    keys.push(norm);
+    keys.push(norm).sort();
 
-    var hkey = keys.sort().join('+');
-    var handler = this.handlers[hkey] || this.handlers['*'];
-
+    var handler = this.handlers[keys.join('+')] || function(){};
     handler(ev);
   }.bind(this);
   this.bind();
 };
 
 Minke.prototype = {
-  bind: function(ev) {
+  bind: function() {
     this.el.addEventListener('keydown', this.listener);
   },
 
-  unbind: function(ev) {
+  unbind: function() {
     this.el.removeEventListener('keydown', this.listener);
   },
 
