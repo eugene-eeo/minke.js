@@ -2,7 +2,11 @@ var assert = chai.assert;
 
 describe('Minke#on', function() {
   var el = $('input');
-  var minke = new Minke(el);
+  var minke = Minke(el);
+
+  it('returns the instance for chaining', function() {
+    assert(minke.on('o', function() {}) === minke);
+  });
 
   it('supports modifier + normal key', function(done) {
     minke.on('ctrl s', function(ev) {
@@ -23,7 +27,7 @@ describe('Minke#on', function() {
 
 describe('Minke#unbind', function() {
   var el = $('input');
-  var minke = new Minke(el);
+  var minke = Minke(el);
 
   it('unbinds the main handler', function() {
     var d;

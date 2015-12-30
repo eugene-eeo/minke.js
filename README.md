@@ -8,13 +8,12 @@ non-modifier key, e.g. Ctrl + B, Tab, Enter, etc.) without
 driving you insane.
 
 ```js
-var minke = new Minke(el);
-minke.on('tab', fn);
-minke.on('ctrl alt ,', fn);        // Ctrl+Alt+,
-
-minke.on('ctrl b', toggleBold);    // Ctrl+B
-minke.on('meta b', toggleBold);    // ⌘ +B
-minke.unbind();
+var minke = Minke(el);
+minke.on('tab', fn)
+     .on('ctrl alt ,', fn)       // Ctrl+Alt+,
+     .on('ctrl b', toggleBold)   // Ctrl+B
+     .on('meta b', toggleBold);  // ⌘ +B
+minke.unbind(); // unbind the main event-handler
 ```
 
 Currently Minke does not support multiple handlers to be bound
