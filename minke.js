@@ -25,10 +25,8 @@ Minke = function(el) {
 };
 
 (function() {
-  Minke.keys = function keys(seq) {
-    if (typeof seq === "string")
-      return keys(seq.split(' '));
-    return seq.map(function(val) {
+  Minke.keys = function keys(str) {
+    return str.split(' ').map(function(val) {
       return (typeof val === 'string')
         ? lookup[val] || +val
         : val;

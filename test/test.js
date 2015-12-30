@@ -46,10 +46,6 @@ describe('Minke.keys', function() {
     var keys = Minke.keys('ctrl alt tab');
     assert.deepEqual(keys, [17, 18, 9]);
   });
-  it('supports a normal array of numbers', function() {
-    var keys = [1,2,3];
-    assert.deepEqual(Minke.keys(keys), keys);
-  });
   it('works for alphabets', function() {
     for (var i = 97; i <= 112; i++) {
       var c = String.fromCharCode(i);
