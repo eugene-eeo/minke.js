@@ -21,10 +21,10 @@ Currently Minke does not support multiple handlers to be bound
 under the same shortcut. This is because I don't usually find
 myself binding multiple callbacks on a single shortcut.
 
-### default key name bindings
+### Default key names
 
 |         | Description                    | KeyCode(s) |
-|:-------:|:------------------------------ |-----------:|
+|:-------:|:------------------------------ |:----------:|
 | `[a-z]` | Alphabets                      | 65-90      |
 | `[0-9]` | Numbers on the number row      | 48-57      |
 | `shift` | Shift key                      | 16         |
