@@ -1,5 +1,7 @@
 # minke.js
 
+<img src='media/minke.png' align='right'/>
+
 A fast, fun little JS microlibrary that helps you handle
 keyboard shortcuts (any number of modifier keys and a non-modifier
 key, e.g. Ctrl + B, Tab, Enter, etc.) without driving you insane.
