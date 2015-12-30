@@ -1,14 +1,15 @@
 # minke.js
 
-A fun little JS microlibrary for the browser to handle
-keyboard shortcuts (any number of modifier keys + one
-"normal" key) without driving you insane.
+A fast, fun little JS microlibrary that helps you handle
+keyboard shortcuts and key presses (e.g. Ctrl + B, Tab,
+Enter, etc.) without driving you insane.
 
 ```js
 var minke = new Minke(el);
 minke.on('ctrl shift ,', function(ev) {
 });
 
-minke.on('ctrl B', toggleBold);
-minke.on('meta B', toggleBold);
+minke.on('ctrl B', toggleBold);    // Ctrl+B
+minke.on('meta B', toggleBold);    // ⌘ +B
+minke.unbind();
 ```
