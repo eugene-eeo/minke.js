@@ -8,13 +8,17 @@ key, e.g. Ctrl + B, Tab, Enter, etc.) without driving you insane.
 
 ```js
 var minke = new Minke(el);
-minke.on('ctrl shift ,', function(ev) {
-});
+minke.on('tab',   fn);
+minke.on('enter', fn);
 
-minke.on('ctrl B', toggleBold);    // Ctrl+B
-minke.on('meta B', toggleBold);    // ⌘ +B
+minke.on('ctrl b', toggleBold);    // Ctrl+B
+minke.on('meta b', toggleBold);    // ⌘ +B
 minke.unbind();
 ```
+
+Currently Minke does not support multiple handlers to be bound
+under the same shortcut. This is because I don't usually find
+myself binding multiple callbacks on a single shortcut.
 
 ### adding custom key names
 
@@ -23,8 +27,11 @@ the browser-specific keycodes, internally Minke normalises
 it to 'meta'.
 
 ```js
-minke.keys.lookup['customKey'] = keyCode;
-minke.keys.lookup['⌘'] = 'meta';
+Minke.lookup['customKey'] = keyCode;
+Minke.lookup['⌘'] = 'meta';
 minke.on('ctrl customKey', fn);
 minke.on('⌘ B', fn);
 ```
+
+You can see an example of how it's done in the
+[symbol bindings](bindings/symbols.js).

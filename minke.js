@@ -32,10 +32,17 @@ Minke.prototype = {
 };
 
 (function() {
-  var alphas = /^[a-zA-Z]$/;
-  var number = /^[0-9]$/;
-  var fnkeys = /^f1?[0-9]$/;
-  var lookup = {
+  Minke.keys = function keys(seq) {
+    if (typeof seq === "string")
+      return keys(seq.split(' '));
+    return seq.map(function(val) {
+      return (typeof val === 'number')
+        ? val
+        : lookup[val] || +val;
+    });
+  };
+
+  var lookup = Minke.lookup = {
     'backspace': 8,
     'tab':       9,
     'enter':     13,
@@ -46,36 +53,18 @@ Minke.prototype = {
     'up':        38,
     'right':     39,
     'down':      40,
-    ',':         188,
-    '.':         190,
-    '/':         191,
-    '\\':        220,
-    '[':         219,
-    ']':         221,
-    '-':         173,
   };
 
-  Minke.keys = function(seq) {
-    if (typeof seq === "string")
-      return Minke.keys(seq.split(' '));
-    return seq.map(function(val) {
-      if (typeof val === 'number') {
-        return val
-      }
-      return (
-        number.test(val) ? 48 + (+val) :
-        alphas.test(val) ? val.toUpperCase().charCodeAt(0) :
-        fnkeys.test(val) ? 111 + (+val.slice(1)) :
-        val == 'meta'    ? val : lookup[val] || +val
-      );
-    });
-  };
+  for (var charCode=97; charCode <= 122; charCode++) {
+    var ch = String.fromCharCode(charCode);
+    lookup[ch] = charCode - 32;
+  }
 
-  var isFF = navigator.userAgent.match('Firefox');
+  for (var i=0; i <= 9; i++) {
+    lookup[i] = i + 48;
+  }
 
-  lookup[';'] = isFF ? 59  : 186;
-  lookup['='] = isFF ? 61  : 187;
-  lookup['-'] = isFF ? 173 : 189;
-
-  Minke.lookup = lookup;
+  for (var i=1; i <= 12; i++) {
+    lookup['f'+i] = i+111;
+  }
 })();

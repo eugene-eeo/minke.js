@@ -44,12 +44,9 @@ describe('Minke.keys', function() {
   });
   it('works for alphabets', function() {
     for (var i = 97; i <= 112; i++) {
-      var lower = String.fromCharCode(i);
-      var upper = lower.toUpperCase();
-      var s0 = Minke.keys(lower);
-      var s1 = Minke.keys(upper);
-      assert.deepEqual(s0, s1);
-      assert.deepEqual(s0, [i-32]);
+      var c = String.fromCharCode(i);
+      var s = Minke.keys(c);
+      assert.deepEqual(s, [i-32]);
     }
   });
   it('works for single numbers', function() {
