@@ -1,5 +1,5 @@
 (function() {
-  var isFF = navigator.userAgent.match('Firefox');
+  var isFF = navigator.userAgent.match('Gecko/');
   var keys = {
     ',':  188,
     '.':  190,
