@@ -10,8 +10,7 @@ Minke = function() {
 
     keys.push(ev.which || ev.keyCode);
 
-    var key = keys.sort().join('-');
-    var handler = handlers[key];
+    var handler = handlers[keys.sort().join('-')];
     handler && handler(ev);
   };
 
