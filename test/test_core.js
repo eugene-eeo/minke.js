@@ -47,10 +47,10 @@ describe('Minke(ev)', function() {
   it("doesn't fire if the keybindings do not match", function() {
     var minke = Minke();
     minke.on('tab', function() { assert(false); });
-    for (var key in Minke.lookup)
+    for (var key in Minke.keys)
       if (key !== 'tab')
         minke($kbd({
-          keyCode: Minke.lookup[key]
+          keyCode: Minke.keys[key]
         }));
   });
 });

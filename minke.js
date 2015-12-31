@@ -15,7 +15,7 @@ Minke = function() {
   };
 
   fn.on = function(combo, handler) {
-    var key = Minke.keys(combo).sort().join('-');
+    var key = Minke.parse(combo).sort().join('-');
     handlers[key] = handler;
     return fn;
   };
@@ -23,13 +23,13 @@ Minke = function() {
   return fn;
 };
 
-Minke.keys = function(combo) {
+Minke.parse = function(combo) {
   return combo.split(' ').map(function(val) {
-    return Minke.lookup[val] || +val;
+    return Minke.keys[val] || +val;
   });
 };
 
-Minke.lookup = (function() {
+Minke.keys = (function() {
   var lookup = {
     backspace: 8,
     tab:       9,

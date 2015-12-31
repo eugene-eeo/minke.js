@@ -38,8 +38,8 @@ the browser-specific keycodes, internally Minke normalises
 it to 'meta'. You can add your custom key names:
 
 ```js
-Minke.lookup['customKey'] = keyCode;
-Minke.lookup['⌘'] = 'meta';
+Minke.keys['customKey'] = keyCode;
+Minke.keys['⌘'] = 'meta';
 minke.on('ctrl customKey', fn);
 minke.on('⌘ B', fn);
 ```
