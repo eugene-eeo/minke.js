@@ -38,6 +38,7 @@ Minke.lookup = (function() {
     shift:     16,
     ctrl:      17,
     alt:       18,
+    meta:      'meta',
     left:      37,
     up:        38,
     right:     39,

@@ -13,7 +13,7 @@ minke.on('tab', fn)
      .on('ctrl alt ,', fn)       // Ctrl+Alt+,
      .on('ctrl b', toggleBold)   // Ctrl+B
      .on('meta b', toggleBold);  // ⌘ +B
-el.onkeypress = minke;
+el.onkeydown = minke;
 ```
 
 Currently Minke does not support multiple handlers to be bound

@@ -28,4 +28,7 @@ describe('Minke.keys', function() {
     assert.deepEqual(Minke.keys('100'), [100]);
   });
 
+  it('returns the normalised meta key', function() {
+    assert.deepEqual(Minke.keys('meta'), ['meta']);
+  });
 });

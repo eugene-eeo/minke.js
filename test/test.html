@@ -16,7 +16,10 @@
   <script>
   $ = document.createElement.bind(document);
   $kbd = function(opts) {
-    return new KeyboardEvent('keydown', opts);
+    var ev = new KeyboardEvent('keydown', opts);
+    for (var i in opts)
+      ev[i] = opts[i];
+    return ev;
   };
   assert = chai.assert;
   </script>
