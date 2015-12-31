@@ -32,6 +32,27 @@ describe('Minke(ev)', function() {
       keyCode: 9
     }));
   });
+
+  it('can be used as an event handler', function(done) {
+    minke.on('enter', function() {
+      done();
+    });
+    var el = $('input');
+    el.onkeydown = minke;
+    el.dispatchEvent($kbd({
+      keyCode: 13
+    }));
+  });
+
+  it("doesn't fire if the keybindings do not match", function() {
+    var minke = Minke();
+    minke.on('tab', function() { assert(false); });
+    for (var key in Minke.lookup)
+      if (key !== 'tab')
+        minke($kbd({
+          keyCode: Minke.lookup[key]
+        }));
+  });
 });
 
 describe('Minke.on', function() {
