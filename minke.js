@@ -14,9 +14,12 @@ Minke = function() {
     handler && handler(ev);
   };
 
-  fn.on = function(combo, handler) {
-    var key = Minke.parse(combo).sort().join('-');
-    handlers[key] = handler;
+  fn.on = function(combos, handler) {
+    (combos.push ? combos : [combos])
+      .forEach(function(key) {
+        var key = Minke.parse(key).sort().join('-')
+        handlers[key] = handler;
+      });
     return fn;
   };
 
