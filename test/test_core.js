@@ -59,4 +59,17 @@ describe('Minke.on', function() {
     var minke = Minke();
     assert(minke.on('tab', fn) === minke);
   });
+  
+  it('accepts a list of combos', function() {
+    var da = [];
+    var minke = Minke().on(['tab', 'enter'], function() {
+      da.push(1);
+    });
+    ['tab', 'enter'].forEach(function(key) {
+      minke($kbd({
+        keyCode: Minke.keys[key]
+      }));
+    })
+    assert(da.length === 2);
+  });
 });
