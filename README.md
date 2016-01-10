@@ -10,9 +10,8 @@ driving you insane.
 ```js
 var minke = Minke();
 minke.on('tab', fn)
-     .on('ctrl alt ,', fn)       // Ctrl+Alt+,
-     .on('ctrl b', toggleBold)   // Ctrl+B
-     .on('meta b', toggleBold);  // ⌘ +B
+     .on('ctrl alt ,', fn)
+     .on(['ctrl b', 'meta b'], toggleBold)
 el.onkeydown = minke;
 ```
 
