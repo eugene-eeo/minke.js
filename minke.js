@@ -3,10 +3,10 @@ Minke = function() {
   var fn = function(ev) {
     var keys = [];
 
-    if (ev.shiftKey) keys.push(16);
-    if (ev.ctrlKey)  keys.push(17);
-    if (ev.altKey)   keys.push(18);
-    if (ev.metaKey)  keys.push('meta');
+    if (ev.shiftKey) keys.push(Minke.keys.shift);
+    if (ev.ctrlKey)  keys.push(Minke.keys.ctrl);
+    if (ev.altKey)   keys.push(Minke.keys.alt);
+    if (ev.metaKey)  keys.push(Minke.keys.meta);
 
     keys.push(ev.which || ev.keyCode);
 
