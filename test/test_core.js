@@ -33,17 +33,6 @@ describe('Minke(ev)', function() {
     }));
   });
 
-  it('can be used as an event handler', function(done) {
-    minke.on('enter', function() {
-      done();
-    });
-    var el = $('input');
-    el.onkeydown = minke;
-    el.dispatchEvent($kbd({
-      keyCode: 13
-    }));
-  });
-
   it("doesn't fire if the keybindings do not match", function() {
     var minke = Minke();
     minke.on('tab', function() { assert(false); });
@@ -59,7 +48,7 @@ describe('Minke.on', function() {
     var minke = Minke();
     assert(minke.on('tab', fn) === minke);
   });
-  
+
   it('accepts a list of combos', function() {
     var da = [];
     var minke = Minke().on(['tab', 'enter'], function() {
