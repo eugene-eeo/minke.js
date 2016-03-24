@@ -15,7 +15,7 @@ Minke = function() {
   };
 
   fn.on = function(combos, handler) {
-    (combos.push ? combos : [combos])
+    [].concat(combos)
       .forEach(function(key) {
         var key = Minke.parse(key).sort().join('-');
         handlers[key] = handler;
