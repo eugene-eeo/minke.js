@@ -33,7 +33,7 @@ Minke.parse = function(combo) {
 };
 
 Minke.keys = (function() {
-  var lookup = {
+  var keys = {
     backspace: 8,
     tab:       9,
     enter:     13,
@@ -49,15 +49,15 @@ Minke.keys = (function() {
 
   // Alphabets
   for (var i = 97; i <= 122; i++)
-    lookup[String.fromCharCode(i)] = i - 32;
+    keys[String.fromCharCode(i)] = i - 32;
 
   // Integers 0-9
   for (var i = 0; i <= 9; i++)
-    lookup[i] = i + 48;
+    keys[i] = i + 48;
 
   // Function keys
   for (var i = 1; i <= 12; i++)
-    lookup['f'+i] = i + 111;
+    keys['f'+i] = i + 111;
 
-  return lookup;
+  return keys;
 })();
