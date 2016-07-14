@@ -27,7 +27,7 @@ Minke = function() {
 };
 
 Minke.parse = function(combo) {
-  return combo.split(' ').map(function(val) {
+  return combo.split(/ +/).map(function(val) {
     return Minke.keys[val] || +val;
   });
 };
